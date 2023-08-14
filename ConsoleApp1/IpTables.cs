@@ -4,11 +4,11 @@ using Throw;
 
 namespace ConsoleApp1;
 
-public class Class1
+public class IpTables
 {
     public string Chain { get; private set; }
     private SshClient Client { get; set; }
-    public Class1(string chain, SshClient client)
+    public IpTables(string chain, SshClient client)
     {
         Client = client;
         chain.Throw(s => throw new ArgumentException("Chain parameter is NullOrEmptyOrWhiteSpace.")).IfNullOrWhiteSpace(_ => _);
@@ -46,7 +46,7 @@ public class Class1
 
         PrintRules();
     }
-    public void PrintRules() 
+    public string PrintRules() 
     {
         Client.Connect();
 
@@ -54,8 +54,6 @@ public class Class1
         string rules = printRulesCommand.Execute();
 
         Client.Disconnect();
-        Console.WriteLine(rules);
+        return rules;
     }
 }
-
-public enum ForwardProtocol { TCP, UDP, Both }
