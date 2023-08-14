@@ -1,0 +1,10 @@
+51232
+
+добавить:
+iptables -t nat -A vserver -p tcp --dport 51232 -j DNAT --to-destination 192.168.1.190:25565 
+
+список:
+-L -t nat --line-numbers -n
+
+удалить, где 3 номер строки:
+iptables -t nat -D vserver 3
