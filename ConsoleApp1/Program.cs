@@ -9,16 +9,16 @@ string hostname = conf.GetSection("hostname").Value!;
 string username = conf.GetSection("username").Value!;
 string password = conf.GetSection("password").Value!;
 string chain = "vserver";
+string table = "nat";
 
 
 
 
 using (var client = new SshClient(hostname, username, password))
 {
-    /*Class1.AddForwardingRule(client, 12345, "192.168.1.181", 54321, ForwardProtocol.Both);*/
-    var ipTables = new IpTables(chain, client);
-    var rules = ipTables.PrintRules();
-    var lines = rules.Split('\n');
-    var a = Rule.Parse(lines);
-
+    var ipTables = new IpTables(table, chain, client);
+    /*ipTables.AddForwardingRule(33333, "192.168.1.192", 2222, ForwardProtocol.Both);*/
+    var rules = ipTables.GetRules();
+    ipTables.DeleteRule(1);
+    ipTables.DeleteRule(1);
 }
