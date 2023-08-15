@@ -1,4 +1,4 @@
-﻿namespace ConsoleApp1
+﻿namespace EzPortForwardingLib
 {
     public enum ForwardProtocol { TCP, UDP };
 }

@@ -1,6 +1,6 @@
 ﻿using Throw;
 
-namespace ConsoleApp1;
+namespace EzPortForwardingLib;
 
 public class RuleWithId : Rule
 {

@@ -1,7 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using Throw;
 
-namespace ConsoleApp1;
+namespace EzPortForwardingLib;
 
 public class Rule
 {
