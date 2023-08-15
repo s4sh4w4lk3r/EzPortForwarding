@@ -10,7 +10,7 @@ public class Rule
     public ushort DestinationtPort { get; private set; }
     public string DestinationIP { get; private set; }
 
-    public override string? ToString() => $"Proto: {Protocol}, Source id: {SourcePort}, Destination: {DestinationIP}:{DestinationtPort}";
+    public override string? ToString() => $"Proto: {Protocol}, Source port: {SourcePort}, Destination: {DestinationIP}:{DestinationtPort}";
     
     public Rule(ForwardProtocol protocol, ushort sourcePort, ushort destinationtPort, string destinationIP)
     {

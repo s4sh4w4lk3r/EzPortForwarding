@@ -103,32 +103,37 @@
             resources.ApplyResources(button2, "button2");
             button2.Name = "button2";
             button2.UseVisualStyleBackColor = true;
+            button2.Click += DeleteRuleAsync;
             // 
             // button3
             // 
             resources.ApplyResources(button3, "button3");
             button3.Name = "button3";
             button3.UseVisualStyleBackColor = true;
+            button3.Click += AddRuleAsync;
             // 
             // button4
             // 
             resources.ApplyResources(button4, "button4");
             button4.Name = "button4";
             button4.UseVisualStyleBackColor = true;
+            button4.Click += EditRuleAsync;
             // 
             // button5
             // 
             resources.ApplyResources(button5, "button5");
             button5.Name = "button5";
             button5.UseVisualStyleBackColor = true;
+            button5.Click += ClearRulesAsync;
             // 
             // button6
             // 
             resources.ApplyResources(button6, "button6");
             button6.Name = "button6";
             button6.UseVisualStyleBackColor = true;
+            button6.Click += UpdateRules;
             // 
-            // Form1
+            // MainWindow
             // 
             resources.ApplyResources(this, "$this");
             AutoScaleMode = AutoScaleMode.Font;
@@ -139,7 +144,7 @@
             Controls.Add(button2);
             Controls.Add(groupBox1);
             Controls.Add(listBox1);
-            Name = "Form1";
+            Name = "MainWindow";
             Load += Form1_Load;
             groupBox1.ResumeLayout(false);
             groupBox1.PerformLayout();

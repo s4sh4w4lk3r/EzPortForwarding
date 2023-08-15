@@ -9,7 +9,7 @@ public class RuleWithId : Rule
     {
         Id = id;
     }
-    public override string? ToString() => $"Id: {Id}, Proto: {Protocol}, Source id: {SourcePort}, Destination: {DestinationIP}:{DestinationtPort}";
+    public override string? ToString() => $"Id: {Id}, Proto: {Protocol}, Source port: {SourcePort}, Destination: {DestinationIP}:{DestinationtPort}";
 
     public static RuleWithId Parse(string str)
     {
@@ -19,7 +19,6 @@ public class RuleWithId : Rule
         var getSourcePortTask = GetSourcePortAsync(str);
         var getDestinationPortTask = GetDestinationPortAsync(str);
         var getDestinationIpTask = GetDestinationIpAsync(str);
-
 
         Task.WaitAll(getIdTask, getProtoTask, getSourcePortTask, getDestinationPortTask, getDestinationIpTask);
         int id = getIdTask.Result;
