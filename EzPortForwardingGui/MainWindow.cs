@@ -99,7 +99,7 @@ public partial class MainWindow : Form
     {
         var oldRule = listBox1.SelectedItem as RuleWithId;
         if (oldRule is null) { return; }
-        var ruleEdtiorForm = new RuleEditor();
+        var ruleEdtiorForm = new RuleEditor(oldRule);
         ruleEdtiorForm.ShowDialog();
         var newRule = ruleEdtiorForm.RuleToEdit;
         if (newRule is null) { return; }
@@ -107,6 +107,5 @@ public partial class MainWindow : Form
         await ipTables.DeleteRuleAsync(oldRule!).ContinueWith(_=>ipTables.AddRuleAsync(newRule));
         await Task.Delay(TimeSpan.FromSeconds(3));
         await UpdateListBoxAsync();
-#warning не рабоает обновление
     }
 }
