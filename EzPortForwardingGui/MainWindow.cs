@@ -1,6 +1,5 @@
 using EzPortForwardingLib;
 using Renci.SshNet;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EzPortForwardingGui;
 
@@ -22,8 +21,6 @@ public partial class MainWindow : Form
             textBox1.Text = Properties.Settings.Default.Hostname;
             textBox2.Text = Properties.Settings.Default.Username;
             textBox3.Text = Properties.Settings.Default.Password;
-            ConnectSsh();
-            _ = UpdateListBoxAsync();
         }
         catch (Exception)
         {
@@ -44,22 +41,32 @@ public partial class MainWindow : Form
         string hostname = textBox1.Text;
         string username = textBox2.Text;
         string password = textBox3.Text;
+        if (saveRequired is true)
+        {
+            if (string.IsNullOrWhiteSpace(hostname) || string.IsNullOrWhiteSpace(username) || string.IsNullOrWhiteSpace(password))
+            {
+
+                MessageBox.Show("Некорректный ввод.");
+                Close();
+            }
+        }
+
         var sshClient = new SshClient(hostname, username, password);
         try
         {
+            Properties.Settings.Default.Hostname = hostname;
+            Properties.Settings.Default.Username = username;
+            Properties.Settings.Default.Password = password;
+            Properties.Settings.Default.Save();
             ipTables = new IpTables(TABLE, CHAIN, sshClient);
             label2.Text = $"Connected to\n{hostname}";
+            if (saveRequired is false) { return; }
         }
         catch (Exception)
         {
             MessageBox.Show("Не удалось подключиться.");
             Close();
         }
-        if (saveRequired is false) { return; }
-        Properties.Settings.Default.Hostname = hostname;
-        Properties.Settings.Default.Username = username;
-        Properties.Settings.Default.Password = password;
-        Properties.Settings.Default.Save();
     }
 
     private async void DeleteRuleAsync(object sender, EventArgs e)
@@ -104,7 +111,7 @@ public partial class MainWindow : Form
         var newRule = ruleEdtiorForm.RuleToEdit;
         if (newRule is null) { return; }
         ruleEdtiorForm.Dispose();
-        await ipTables.DeleteRuleAsync(oldRule!).ContinueWith(_=>ipTables.AddRuleAsync(newRule));
+        await ipTables.DeleteRuleAsync(oldRule!).ContinueWith(_ => ipTables.AddRuleAsync(newRule));
         await Task.Delay(TimeSpan.FromSeconds(3));
         await UpdateListBoxAsync();
     }

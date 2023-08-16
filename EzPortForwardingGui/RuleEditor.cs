@@ -21,18 +21,18 @@ namespace EzPortForwardingGui
             string ip = textBox2.Text;
             var ipRegex = new Regex("^(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\\.(?:25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)$");
             bool ipOk = ipRegex.IsMatch(ip);
-            
+
             if ((ipOk && sportOk && dportOk) is false)
             {
                 MessageBox.Show("Введены неправильные данные.");
                 return;
             }
 
-            if (comboBox1.SelectedItem.ToString() == "TCP") 
+            if (comboBox1.SelectedItem.ToString() == "TCP")
             {
-                RuleToEdit = new Rule(ForwardProtocol.TCP, sport, dport, ip); 
+                RuleToEdit = new Rule(ForwardProtocol.TCP, sport, dport, ip);
             }
-            if (comboBox1.SelectedItem.ToString() == "UDP") 
+            if (comboBox1.SelectedItem.ToString() == "UDP")
             {
                 RuleToEdit = new Rule(ForwardProtocol.UDP, sport, dport, ip);
             }

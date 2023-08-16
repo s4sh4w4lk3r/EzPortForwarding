@@ -130,8 +130,9 @@
             Controls.Add(textBox3);
             Controls.Add(textBox2);
             Controls.Add(textBox1);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
             Name = "RuleEditor";
-            Text = "RuleEditor";
+            Text = "Редактор правил";
             Load += RuleEditor_Load;
             ResumeLayout(false);
             PerformLayout();
