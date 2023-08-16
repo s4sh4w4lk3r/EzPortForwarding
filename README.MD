@@ -7,3 +7,6 @@ ___
 Автор не несет ответственности за ваш iptables и стабильность сети, а также ключи и пароли SSH, хоть исходный код является открытым.
 
 .NET 7.0
+
+![Alt text](/EzPortForwardingGui/mainwindow.png?raw=true "MainWindow")
+![Alt text](/EzPortForwardingGui/ruleeditor.png?raw=true "RuleEdtior")
